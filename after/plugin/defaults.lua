@@ -6,7 +6,7 @@ local keymap = vim.api.nvim_set_keymap
 
 -- Remap space as leader key
 keymap('', '<Space>', '<Nop>', opts)
-vim.g.mapleader = ' '
+-- vim.g.mapleader = ' '
 -- vim.g.maplocalleader = " "
 
 -- Modes
@@ -46,22 +46,22 @@ keymap('v', 'p', '"_dP', opts) -- Paste and overwrite in visual mode
 keymap('n', 'Y', 'y$', opts) -- Copy line
 keymap('n', '``', '@:', opts) -- run last colon command
 keymap('n', '<Leader>q', ':nohlsearch<CR>', opts) -- remove highlight from searches
-keymap('n', '<Leader>sa', 'gg^vG$', opts) -- run last colon command
-keymap('n', '<Leader>r', ':so ~/.config/kicknvim/init.lua<CR>:nohlsearch<CR>', opts) -- reload
+keymap('n', '<Leader>sa', 'gg^vG$', { desc = 'Select All text in file' })
+-- keymap('n', '<Leader>r', ':so ~/.config/kicknvim/init.lua<CR>:nohlsearch<CR>', opts) -- reload
 keymap('n', 'vv', ':vsplit | b', opts) -- open vsplit
 keymap('n', 'vs', ':split | b', opts) -- open split
 
 -- Visual --
 -- Stay in indent mode
-keymap('v', '<', '<gv', opts)
-keymap('v', '>', '>gv', opts)
+-- keymap('v', '<', '<gv', opts)
+-- keymap('v', '>', '>gv', opts)
 
 -- Visual Block --
 -- Move text up and down
-keymap('x', 'J', ":move '>+1<CR>gv-gv", opts)
-keymap('x', 'K', ":move '<-2<CR>gv-gv", opts)
-keymap('x', '<A-j>', ":move '>+1<CR>gv-gv", opts)
-keymap('x', '<A-k>', ":move '<-2<CR>gv-gv", opts)
+-- keymap('x', 'J', ":move '>+1<CR>gv-gv", opts)
+-- keymap('x', 'K', ":move '<-2<CR>gv-gv", opts)
+-- keymap('x', '<A-j>', ":move '>+1<CR>gv-gv", opts)
+-- keymap('x', '<A-k>', ":move '<-2<CR>gv-gv", opts)
 
 -- Terminal --
 -- Better terminal navigation
@@ -91,7 +91,7 @@ keymap('x', '<A-k>', ":move '<-2<CR>gv-gv", opts)
 -- ]])
 
 -- Close all buffers
-keymap('n', '<Leader>bd', ':BufOnly<CR>', opts)
+-- keymap('n', '<Leader>bd', ':BufOnly<CR>', opts)
 
 -- Laygit
-keymap('n', '<Leader>gg', ':LazyGit<CR>', opts)
+-- keymap('n', '<Leader>gg', ':LazyGit<CR>', opts)
