@@ -388,7 +388,7 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
 
       -- file_browser
-      -- vim.keymap.set('n', '<leader>F', ':Telescoe file_browser<CR>', { desc = '[F]ile [B]rowser' })
+      -- vim.keymap.set('n', '<leader>F', ':Telescope file_browser<CR>', { desc = '[F]ile [B]rowser' })
       -- open file_browser with the path of the current buffer
       -- vim.keymap.set('n', '<leader>C', ':Telescope file_browser path=%:p:h select_buffer=true<CR>', { desc = '[F]ile Browser [C]urrent' })
 

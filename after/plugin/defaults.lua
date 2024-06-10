@@ -97,5 +97,5 @@ keymap('n', 'vs', ':split | b', opts) -- open split
 -- keymap('n', '<Leader>gg', ':LazyGit<CR>', opts)
 --
 -- Neo Tree
-vim.keymap.set('n', '<leader>F', ':Neotree float<CR>', { desc = '[F]ile [B]rowser' })
-vim.keymap.set('n', '<leader>C', ':Neotree float reveal<CR>', { desc = '[F]ile Browser [C]urrent' })
+vim.keymap.set('n', '<leader>F', ':Neotree float<CR>', { desc = '[F]ile Browser' })
+vim.keymap.set('n', '<leader>C', ':Neotree float reveal<CR>', { desc = 'File Browser [C]urrent' })
