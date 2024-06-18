@@ -68,13 +68,6 @@ keymap('n', 'vs', ':split | b', opts) -- open split
 -- keymap('x', '<A-j>', ":move '>+1<CR>gv-gv", opts)
 -- keymap('x', '<A-k>', ":move '<-2<CR>gv-gv", opts)
 
--- Terminal --
--- Better terminal navigation
--- keymap('t', '<C-h>', '<C-\\><C-N><C-w>h', term_opts)
--- keymap('t', '<C-j>', '<C-\\><C-N><C-w>j', term_opts)
--- keymap('t', '<C-k>', '<C-\\><C-N><C-w>k', term_opts)
--- keymap('t', '<C-l>', '<C-\\><C-N><C-w>l', term_opts)
-
 -- Command --
 -- Menu navigation
 -- keymap("c", "<C-n>",  'pumvisible() ? "\\<C-n>" : "\\<C-j>"', { expr = true, noremap = true } )
@@ -84,17 +77,6 @@ keymap('n', 'vs', ':split | b', opts) -- open split
 -- keymap('n', '<Leader>t', ':NvimTreeToggle<CR>', opts)
 -- keymap('n', '<Leader>e', ':NvimTreeFindFile<CR>', opts)
 
--- fzf
--- vim.cmd "let g:fzf_layout = { 'down': '~30%' }"
--- keymap('n', '<Leader>f', ':Files<CR>', opts)
--- keymap('n', '<Leader>g', ':GitFiles<CR>', opts)
--- keymap('n', '<Leader>b', ':Buffers<CR>', opts)
--- keymap('n', '<Leader>a', ':Ag<space>', {})
--- keymap('n', '<C-p>', ':Ag <C-R><C-W><CR>', {})
--- vim.cmd([[
---   nnoremap <Leader>a :Ag<space>
--- ]])
-
 -- Close all buffers
 -- keymap('n', '<Leader>bd', ':BufOnly<CR>', opts)
 
@@ -103,4 +85,9 @@ keymap('n', 'vs', ':split | b', opts) -- open split
 --
 -- Neo Tree
 vim.keymap.set('n', '<leader>F', ':Neotree float<CR>', { desc = '[F]ile Browser' })
-vim.keymap.set('n', '<leader>C', ':Neotree float reveal<CR>', { desc = '[F]ile Browser [C]urrent' })
+vim.keymap.set('n', '<leader>C', ':Neotree float reveal<CR>', { desc = 'File Browser [C]urrent' })
+
+vim.keymap.set('n', '<leader>cr', ':let @+=expand("%")<CR>', { desc = '[C]opy File Relative Path' })
+vim.keymap.set('n', '<leader>cf', ':let @+=expand("%:p")<CR>', { desc = '[C]opy File Full Path' })
+vim.keymap.set('n', '<leader>cd', ':let @+=expand("%:p:h")<CR>', { desc = '[C]opy File Directory' })
+vim.keymap.set('n', '<leader>cn', ':let @+=expand("%:t")<CR>', { desc = '[C]opy Filename' })
