@@ -1,3 +1,8 @@
+vim.opt.expandtab = true -- Use spaces instead of tabs
+vim.opt.shiftwidth = 2 -- Shift 2 spaces when tab
+vim.opt.tabstop = 2 -- tab == 2 spaces
+vim.opt.smartindent = true -- Autoindent new lines
+
 local opts = { noremap = true, silent = true }
 local term_opts = { silent = true }
 
@@ -98,4 +103,4 @@ keymap('n', 'vs', ':split | b', opts) -- open split
 --
 -- Neo Tree
 vim.keymap.set('n', '<leader>F', ':Neotree float<CR>', { desc = '[F]ile Browser' })
-vim.keymap.set('n', '<leader>C', ':Neotree float reveal<CR>', { desc = 'File Browser [C]urrent' })
+vim.keymap.set('n', '<leader>C', ':Neotree float reveal<CR>', { desc = '[F]ile Browser [C]urrent' })
