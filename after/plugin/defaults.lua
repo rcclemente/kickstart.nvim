@@ -9,6 +9,13 @@ local term_opts = { silent = true }
 -- Shorten function name
 local keymap = vim.api.nvim_set_keymap
 
+-- set filetypes
+vim.filetype.add {
+  extension = {
+    tf = 'terraform',
+  },
+}
+
 -- Remap space as leader key
 keymap('', '<Space>', '<Nop>', opts)
 -- vim.g.mapleader = ' '
@@ -91,3 +98,14 @@ vim.keymap.set('n', '<leader>cr', ':let @+=expand("%")<CR>', { desc = '[C]opy Fi
 vim.keymap.set('n', '<leader>cf', ':let @+=expand("%:p")<CR>', { desc = '[C]opy File Full Path' })
 vim.keymap.set('n', '<leader>cd', ':let @+=expand("%:p:h")<CR>', { desc = '[C]opy File Directory' })
 vim.keymap.set('n', '<leader>cn', ':let @+=expand("%:t")<CR>', { desc = '[C]opy Filename' })
+
+-- Telescope
+-- search in cwd
+vim.keymap.set('n', '<leader>sC', "<cmd>lua require'telescope.builtin'.find_files({  cwd = vim.fn.expand '%:p:h' })<cr>", { desc = '[S]earch in [C]wd' })
+-- search hidden
+vim.keymap.set(
+  'n',
+  '<leader>sH',
+  "<cmd>lua require'telescope.builtin'.find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git' }})<cr>",
+  { desc = '[S]earch in [C]wd' }
+)

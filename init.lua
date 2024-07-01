@@ -329,6 +329,9 @@ require('lazy').setup({
 
       -- File Browser
       { 'nvim-telescope/telescope-file-browser.nvim' },
+
+      -- search in dir
+      { 'princejoogie/dir-telescope.nvim' },
     },
     config = function()
       -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -367,6 +370,13 @@ require('lazy').setup({
             require('telescope.themes').get_dropdown(),
           },
         },
+
+        -- require('dir-telescope').setup {
+        --   -- these are the default options set
+        --   hidden = true,
+        --   no_ignore = false,
+        --   show_preview = true,
+        -- },
       }
 
       -- Enable Telescope extensions if they are installed
@@ -376,6 +386,7 @@ require('lazy').setup({
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
+      local utils = require 'telescope.utils'
       vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
       vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
       vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
@@ -386,6 +397,12 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
       vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
+
+      -- dir-telescope
+      -- vim.keymap.set('n', '<leader>sH', '<cmd>Telescope dir live_grep<CR>', { desc = '[S]earch in [H]idden' })
+      -- vim.keymap.set('n', '<leader>sC', require('telescope.builtin').find_files { cwd = vim.fn.expand '%:p:h' }, { desc = '[S]earch in [C]wd' })
+      -- vim.keymap.set('n', '<leader>sC', builtin.find_files { cwd = vim.fn.expand '%:p:h' }, { desc = '[S]earch in [C]wd' })
+      -- vim.keymap.set('n', '<leader>sC', '<cmd>Telescope dir find_files<CR>', { noremap = true, silent = true })
 
       -- file_browser
       -- vim.keymap.set('n', '<leader>F', ':Telescope file_browser<CR>', { desc = '[F]ile [B]rowser' })
