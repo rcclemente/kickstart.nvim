@@ -58,7 +58,7 @@ keymap('v', 'p', '"_dP', opts) -- Paste and overwrite in visual mode
 keymap('n', 'Y', 'y$', opts) -- Copy line
 keymap('n', '``', '@:', opts) -- run last colon command
 keymap('n', '<Leader>q', ':nohlsearch<CR>', opts) -- remove highlight from searches
-keymap('n', '<Leader>sa', 'gg^vG$', { desc = 'Select All text in file' })
+keymap('n', '<Leader>sa', 'gg^vG$', { desc = '[S]elect [A]ll text in file' })
 -- keymap('n', '<Leader>r', ':so ~/.config/kicknvim/init.lua<CR>:nohlsearch<CR>', opts) -- reload
 keymap('n', 'vv', ':vsplit | b', opts) -- open vsplit
 keymap('n', 'vs', ':split | b', opts) -- open split
@@ -94,6 +94,7 @@ keymap('n', 'vs', ':split | b', opts) -- open split
 vim.keymap.set('n', '<leader>F', ':Neotree float<CR>', { desc = '[F]ile Browser' })
 vim.keymap.set('n', '<leader>C', ':Neotree float reveal<CR>', { desc = 'File Browser [C]urrent' })
 
+-- Copy file or path
 vim.keymap.set('n', '<leader>cr', ':let @+=expand("%")<CR>', { desc = '[C]opy File Relative Path' })
 vim.keymap.set('n', '<leader>cf', ':let @+=expand("%:p")<CR>', { desc = '[C]opy File Full Path' })
 vim.keymap.set('n', '<leader>cd', ':let @+=expand("%:p:h")<CR>', { desc = '[C]opy File Directory' })
@@ -101,11 +102,16 @@ vim.keymap.set('n', '<leader>cn', ':let @+=expand("%:t")<CR>', { desc = '[C]opy 
 
 -- Telescope
 -- search in cwd
-vim.keymap.set('n', '<leader>sC', "<cmd>lua require'telescope.builtin'.find_files({  cwd = vim.fn.expand '%:p:h' })<cr>", { desc = '[S]earch in [C]wd' })
+vim.keymap.set(
+  'n',
+  '<leader>sy',
+  "<cmd>lua require'telescope.builtin'.find_files({  cwd = vim.fn.expand '%:p:h' })<cr>",
+  { desc = '[S]earch in Current Buffer`s Director[y]' }
+)
 -- search hidden
 vim.keymap.set(
   'n',
-  '<leader>sH',
+  '<leader>si',
   "<cmd>lua require'telescope.builtin'.find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git' }})<cr>",
-  { desc = '[S]earch in [C]wd' }
+  { desc = '[S]earch in h[i]dden' }
 )
