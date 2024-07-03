@@ -331,7 +331,7 @@ require('lazy').setup({
       { 'nvim-telescope/telescope-file-browser.nvim' },
 
       -- search in dir
-      { 'princejoogie/dir-telescope.nvim' },
+      -- { 'princejoogie/dir-telescope.nvim' },
     },
     config = function()
       -- Telescope is a fuzzy finder that comes with a lot of different things that

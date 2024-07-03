@@ -95,10 +95,10 @@ vim.keymap.set('n', '<leader>F', ':Neotree float<CR>', { desc = '[F]ile Browser'
 vim.keymap.set('n', '<leader>C', ':Neotree float reveal<CR>', { desc = 'File Browser [C]urrent' })
 
 -- Copy file or path
-vim.keymap.set('n', '<leader>cr', ':let @+=expand("%")<CR>', { desc = '[C]opy File Relative Path' })
-vim.keymap.set('n', '<leader>cf', ':let @+=expand("%:p")<CR>', { desc = '[C]opy File Full Path' })
-vim.keymap.set('n', '<leader>cd', ':let @+=expand("%:p:h")<CR>', { desc = '[C]opy File Directory' })
-vim.keymap.set('n', '<leader>cn', ':let @+=expand("%:t")<CR>', { desc = '[C]opy Filename' })
+vim.keymap.set('n', '<leader>cr', ':let @+=expand("%")<CR>', { desc = '[C]opy File [R]elative Path' })
+vim.keymap.set('n', '<leader>cf', ':let @+=expand("%:p")<CR>', { desc = '[C]opy File [F]ull Path' })
+vim.keymap.set('n', '<leader>cd', ':let @+=expand("%:p:h")<CR>', { desc = '[C]opy File [D]irectory' })
+vim.keymap.set('n', '<leader>cn', ':let @+=expand("%:t")<CR>', { desc = '[C]opy File[n]ame' })
 
 -- Telescope
 -- search in cwd
@@ -113,5 +113,5 @@ vim.keymap.set(
   'n',
   '<leader>si',
   "<cmd>lua require'telescope.builtin'.find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git' }})<cr>",
-  { desc = '[S]earch in h[i]dden' }
+  { desc = '[S]earch h[i]dden(exclude .git/)' }
 )
