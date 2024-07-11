@@ -102,12 +102,11 @@ vim.keymap.set('n', '<leader>cn', ':let @+=expand("%:t")<CR>', { desc = '[C]opy 
 
 -- Telescope
 -- search in cwd
-vim.keymap.set(
-  'n',
-  '<leader>sy',
-  "<cmd>lua require'telescope.builtin'.find_files({  cwd = vim.fn.expand '%:p:h' })<cr>",
-  { desc = '[S]earch in Current Buffer`s Director[y]' }
-)
+vim.keymap.set('n', '<leader>sy', "<cmd>lua require'telescope.builtin'.find_files({  cwd = vim.fn.expand '%:p:h' })<cr>", { desc = '[S]earch File in Cwd[y]' })
+
+-- grep current diretory
+vim.keymap.set('n', '<leader>sc', "<cmd>lua require'telescope.builtin'.live_grep{ search_dirs={'%:p:h'} }<CR>", { desc = '[S]earch Grep in [C]wd' })
+
 -- search hidden
 vim.keymap.set(
   'n',
