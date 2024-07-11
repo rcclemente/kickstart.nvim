@@ -10,11 +10,11 @@ local term_opts = { silent = true }
 local keymap = vim.api.nvim_set_keymap
 
 -- set filetypes
-vim.filetype.add {
-  extension = {
-    tf = 'terraform',
-  },
-}
+-- vim.filetype.add {
+--   extension = {
+--     tf = 'terraform',
+--   },
+-- }
 
 -- Remap space as leader key
 keymap('', '<Space>', '<Nop>', opts)
