@@ -10,6 +10,5 @@ return {
         },
       },
     }
-    local nvim_tmux_nav = require 'nvim-tmux-navigation'
   end,
 }
