@@ -4,7 +4,7 @@ vim.opt.tabstop = 2 -- tab == 2 spaces
 vim.opt.smartindent = true -- Autoindent new lines
 
 local opts = { noremap = true, silent = true }
-local term_opts = { silent = true }
+-- local term_opts = { silent = true }
 
 -- Shorten function name
 local keymap = vim.api.nvim_set_keymap
@@ -31,7 +31,7 @@ keymap('', '<Space>', '<Nop>', opts)
 
 -- Normal --
 keymap('n', '<Enter>', 'O<Esc>j', opts)
-keymap('n', 'Y', 'y$', opts)
+keymap('n', 'Y', 'yg_', opts)
 
 -- Better window navigation -- kickstart built in now
 -- keymap("n", "<C-h>", "<C-w>h", opts)
