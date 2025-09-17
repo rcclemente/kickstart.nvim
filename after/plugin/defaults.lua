@@ -114,3 +114,26 @@ vim.keymap.set(
   "<cmd>lua require'telescope.builtin'.find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git' }})<cr>",
   { desc = '[S]earch h[i]dden(exclude .git/)' }
 )
+
+-- cleanup lines that are just spaces
+vim.keymap.set('n', '<leader>l', function()
+  -- Save cursor position
+  local cursor_pos = vim.api.nvim_win_get_cursor(0)
+  -- Run the cleanup command - replace lines with only whitespace with empty lines
+  vim.cmd 'silent! %s/^\\s\\+$//e'
+  -- Restore cursor position
+  vim.api.nvim_win_set_cursor(0, cursor_pos)
+  -- Optional: show a message
+  print 'Lines cleaned up!'
+end, { desc = 'Clean up [l]ines with only whitespace' })
+
+vim.api.nvim_create_autocmd('BufWritePre', {
+  pattern = '*',
+  callback = function()
+    local save_cursor = vim.fn.getpos '.'
+    pcall(function()
+      vim.cmd [[%s/\s\+$//e]]
+    end)
+    vim.fn.setpos('.', save_cursor)
+  end,
+})
