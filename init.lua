@@ -371,6 +371,7 @@ require('lazy').setup({
             '--column',
             '--smart-case',
             '--hidden',
+            '--no-ignore',
             '-g',
             '!.git/',
           },
@@ -378,7 +379,7 @@ require('lazy').setup({
         pickers = {
           find_files = {
             hidden = true,
-            find_command = { 'rg', '--files', '--hidden', '-g', '!.git/' },
+            find_command = { 'rg', '--files', '--hidden', '--no-ignore', '-g', '!.git/' },
           },
         },
         extensions = {
