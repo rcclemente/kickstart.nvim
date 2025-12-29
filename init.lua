@@ -362,8 +362,25 @@ require('lazy').setup({
               ['<c-d>'] = require('telescope.actions').delete_buffer,
             },
           },
+          vimgrep_arguments = {
+            'rg',
+            '--color=never',
+            '--no-heading',
+            '--with-filename',
+            '--line-number',
+            '--column',
+            '--smart-case',
+            '--hidden',
+            '-g',
+            '!.git/',
+          },
         },
-        -- pickers = {}
+        pickers = {
+          find_files = {
+            hidden = true,
+            find_command = { 'rg', '--files', '--hidden', '-g', '!.git/' },
+          },
+        },
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
