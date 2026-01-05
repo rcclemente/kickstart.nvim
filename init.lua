@@ -374,12 +374,14 @@ require('lazy').setup({
             '--no-ignore',
             '-g',
             '!.git/',
+            '-g',
+            '!.terraform/',
           },
         },
         pickers = {
           find_files = {
             hidden = true,
-            find_command = { 'rg', '--files', '--hidden', '--no-ignore', '-g', '!.git/' },
+            find_command = { 'rg', '--files', '--hidden', '--no-ignore', '-g', '!.git/', '-g', '!.terraform/' },
           },
         },
         extensions = {
