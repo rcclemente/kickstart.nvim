@@ -356,6 +356,13 @@ require('lazy').setup({
         --  All the info you're looking for is in `:help telescope.setup()`
         --
         defaults = {
+          layout_strategy = 'vertical',
+          layout_config = {
+            vertical = {
+              mirror = true,
+              preview_height = 0.6,
+            },
+          },
           mappings = {
             i = {
               -- ['<c-enter>'] = 'to_fuzzy_refine'
