@@ -87,6 +87,8 @@ P.S. You can delete this when you're done too. It's your config now! :)
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
+vim.env.PATH = '/opt/homebrew/bin:/usr/local/bin:' .. vim.env.PATH
+
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
@@ -302,7 +304,7 @@ require('lazy').setup({
   { -- Fuzzy Finder (files, lsp, etc)
     'nvim-telescope/telescope.nvim',
     event = 'VimEnter',
-    branch = '0.1.x',
+    branch = 'master',
     dependencies = {
       'nvim-lua/plenary.nvim',
       { -- If encountering errors, see telescope-fzf-native README for installation instructions
@@ -383,12 +385,14 @@ require('lazy').setup({
             '!.git/',
             '-g',
             '!.terraform/',
+            '-g',
+            '!.omc/',
           },
         },
         pickers = {
           find_files = {
             hidden = true,
-            find_command = { 'rg', '--files', '--hidden', '--no-ignore', '-g', '!.git/', '-g', '!.terraform/' },
+            find_command = { 'rg', '--files', '--hidden', '--no-ignore', '-g', '!.git/', '-g', '!.terraform/', '-g', '!.omc/' },
           },
         },
         extensions = {
@@ -888,34 +892,33 @@ require('lazy').setup({
   },
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
-    build = ':TSUpdate',
-    opts = {
-      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'vim', 'vimdoc' },
-      -- Autoinstall languages that are not installed
-      auto_install = true,
-      highlight = {
-        enable = true,
-        -- Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.
-        --  If you are experiencing weird indenting issues, add the language to
-        --  the list of additional_vim_regex_highlighting and disabled languages for indent.
-        additional_vim_regex_highlighting = { 'ruby' },
-      },
-      indent = { enable = true, disable = { 'ruby' } },
-    },
-    config = function(_, opts)
-      -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
+    branch = 'main',
+    lazy = false,
+    build = function()
+      require('nvim-treesitter').update()
+    end,
+    config = function()
+      local ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'vim', 'vimdoc' }
+      require('nvim-treesitter').install(ensure_installed)
 
-      -- Prefer git instead of curl in order to improve connectivity in some environments
-      require('nvim-treesitter.install').prefer_git = true
-      ---@diagnostic disable-next-line: missing-fields
-      require('nvim-treesitter.configs').setup(opts)
+      local ts_ft = vim.iter(ensure_installed)
+        :map(function(lang)
+          return vim.treesitter.language.get_filetypes(lang)
+        end)
+        :flatten()
+        :totable()
 
-      -- There are additional nvim-treesitter modules that you can use to interact
-      -- with nvim-treesitter. You should go explore a few and see what interests you:
-      --
-      --    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
-      --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
-      --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+      vim.api.nvim_create_autocmd('FileType', {
+        pattern = ts_ft,
+        callback = function(args)
+          local ft = args.match
+          if ft == 'ruby' then
+            return
+          end
+          pcall(vim.treesitter.start, args.buf)
+          vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        end,
+      })
     end,
   },
 
